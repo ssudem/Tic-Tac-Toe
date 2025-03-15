@@ -1,0 +1,103 @@
+/* @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@539&display=swap"); */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+#root {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: rgb(2, 0, 36);
+  background: linear-gradient(
+    90deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(238, 0, 56, 1) 0%,
+    rgba(0, 212, 255, 1) 100%
+  );
+}
+
+#board {
+  height: min(40vh, 90vw);
+  width: min(40vh, 90vw);
+
+  display: grid;
+  grid-template-rows: repeat(3, 1fr);
+  grid-template-columns: repeat(3, 1fr);
+  /* grid-gap: 3px; */
+
+  background: rgb(174, 222, 238);
+  background: radial-gradient(
+    circle,
+    rgba(174, 222, 238, 0.5825851825105042) 0%,
+    rgba(217, 233, 148, 1) 100%
+  );
+}
+
+#board > div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: min(11.34vh, 58vw);
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-weight: 500;
+  outline: 3px solid black;
+}
+
+#interface {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+
+  height: 80vh;
+  width: min(50vh, 90vw);
+
+  background: rgb(131, 58, 180);
+  background: linear-gradient(
+    90deg,
+    rgba(131, 58, 180, 1) 0%,
+    rgba(0, 106, 166, 0.4397280396533614) 48%,
+    rgba(252, 69, 84, 1) 100%
+  );
+
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+    rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+    rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+#display {
+  font-size: min(7.34vh, 54vw);
+  color: rgb(234, 255, 0);
+}
+
+#reset {
+  height: min(7vh, 10vw);
+  width: min(15vh, 20vw);
+  padding: min(1vw, 1vh);
+  font-weight: bold;
+  font-size: min(3.5vh, 3.5vw);
+
+  background-color: rgb(255, 225, 161);
+}
+
+#reset:hover {
+  cursor: pointer;
+  background-color: rgb(255, 209, 108);
+}
+#board > div:hover {
+  cursor: pointer;
+  background-color: rgb(253, 240, 141);
+}
+.Blue {
+  color: blue;
+}
+
+.Red {
+  color: red;
+}
