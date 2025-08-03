@@ -1,6 +1,9 @@
 import react, { useEffect, useState } from "react";
 import ReactDOM from "react-dom/client";
 
+import { ImCross } from "react-icons/im";
+import { CgShapeCircle } from "react-icons/cg";
+
 const winCombo = [
   [0, 1, 2],
   [3, 4, 5],
@@ -46,33 +49,28 @@ function Borad({ arr, reRender, turn, setTurn, gameover, setGameOver }) {
   function handleClick(event) {
     if (gameover === true || arr[event.target.id] !== " ") return;
 
-    // arr[event.target.id] = turn;
-    // reRender([...arr]);
-
     const newArr = [...arr];
     newArr[event.target.id] = turn;
-    //console.log(" turn = " + turn);
-    reRender(newArr); // Trigger a state update with the new array
+    reRender(newArr);
 
-    // console.log(arr);
-    // console.log(turn);
-
-    if (turn === "X") turn = "O";
-    else turn = "X";
-
-    //console.log(" turn = " + turn);
-    setTurn(turn);
+    setTurn(turn === "X" ? "O" : "X");
 
     gameover = isGameOver(newArr, winCombo).first;
     if (gameover) setGameOver(gameover);
   }
 
-  console.log("Borad Executed .");
+  // console.log("Borad Executed .");
   return (
     <div id="board" onClick={handleClick}>
       {arr.map((value, index) => (
         <div key={index} id={index} style={{ color: "black" }}>
-          {value}
+          {value === "X" ? (
+            <ImCross className="IamCross" />
+          ) : value === "O" ? (
+            <CgShapeCircle className="IamCircle" />
+          ) : (
+            ""
+          )}
         </div>
       ))}
     </div>
@@ -80,7 +78,7 @@ function Borad({ arr, reRender, turn, setTurn, gameover, setGameOver }) {
 }
 
 function DisplayTurn({ arr, turn, gameover }) {
-  console.log("DisplayTurn Executed .");
+  //  console.log("DisplayTurn Executed .");
   let ans = "";
   if (gameover === true) {
     ans = isGameOver(arr, winCombo).third;
@@ -99,12 +97,12 @@ function DisplayTurn({ arr, turn, gameover }) {
 }
 
 function App() {
-  console.log("App Executed .");
+  // console.log("App Executed .");
   const [turn, setTurn] = useState("X");
   const [gameover, setGameOver] = useState(false);
   const [arr, reRender] = useState(new Array(9).fill(" "));
   useEffect(() => {
-    console.log("App useEffect Executed .");
+    // console.log("App useEffect Executed .");
     const { first: isover, second: result } = isGameOver(arr, winCombo);
     if (typeof result !== "string") {
       document.getElementById(result[0]).style.color = "red";
@@ -131,20 +129,23 @@ function App() {
   }
 
   return (
-    <div id="interface">
-      <Borad
-        arr={arr}
-        reRender={reRender}
-        turn={turn}
-        setTurn={setTurn}
-        gameover={gameover}
-        setGameOver={setGameOver}
-      />
-      <DisplayTurn arr={arr} turn={turn} gameover={gameover} />
-      <button id="reset" style={{ display: "none" }} onClick={handleReset}>
-        Reset
-      </button>
-    </div>
+    <>
+      {/* <h1> hello World</h1> */}
+      <div id="interface">
+        <Borad
+          arr={arr}
+          reRender={reRender}
+          turn={turn}
+          setTurn={setTurn}
+          gameover={gameover}
+          setGameOver={setGameOver}
+        />
+        <DisplayTurn arr={arr} turn={turn} gameover={gameover} />
+        <button id="reset" style={{ display: "none" }} onClick={handleReset}>
+          Reset
+        </button>
+      </div>
+    </>
   );
 }
 
